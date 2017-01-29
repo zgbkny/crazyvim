@@ -37,6 +37,13 @@ set hlsearch
 " 开启行号显示
 set number
 """"""""""""""""""""""""""""""""""""""""""""""
+" 打印当前时间
+"map <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
+
+" 复制当前文件/路径到剪贴板
+nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+""""""""""""""""""""""""""""""""""""""""""""""
 " 复制与粘贴快捷键
 imap <C-v> "+gP
 vmap <C-c> "+y
@@ -47,6 +54,17 @@ imap <C-V>      "+gP
 map <S-Insert>      "+gP
 cmap <C-V>      <C-R>+
 cmap <S-Insert>     <C-R>+
+""""""""""""""""""""""""""""""""""""""""""""""
+" tab设置
+let mapleader=","
+
+nmap <leader>s :source $VIM/_vimrc<cr>
+nmap <leader>e :e $VIM/.vimrc<cr>
+
+map <leader>tn :tabnew<cr>
+map <leader>tc :tabclose<cr>
+map <leader>th :tabp<cr>
+map <leader>tl :tabn<cr>
 """"""""""""""""""""""""""""""""""""""""""""""
 " 行首行尾跳转
 nmap LL 0
