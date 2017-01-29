@@ -1,4 +1,57 @@
-"""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""
+" 配色
+set background=dark
+colorscheme solarized
+"colorscheme molokai
+"colorscheme phd
+""""""""""""""""""""""""""""""""""""""""""""""
+" 语言和编码方式
+" Lang & Encoding {{{
+set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+set encoding=utf-8
+set langmenu=zh_CN
+let $LANG = 'en_US.UTF-8'
+"language messages zh_CN.UTF-8
+" }}}
+""""""""""""""""""""""""""""""""""""""""""""""
+" 显示设置
+" 禁止光标闪烁
+" set gcr=a:block-blinkon0
+" 禁止显示滚动条
+set guioptions-=l
+set guioptions-=L
+set guioptions-=r
+set guioptions-=R
+" 禁止显示菜单和工具条
+set guioptions-=m
+set guioptions-=T
+" 总是显示状态栏
+set laststatus=2
+" 显示光标当前位置
+set ruler
+" 高亮当前行\列
+set cursorline
+set cursorcolumn
+" 高亮搜索结果
+set hlsearch
+" 开启行号显示
+set number
+""""""""""""""""""""""""""""""""""""""""""""""
+" 复制与粘贴快捷键
+imap <C-v> "+gP
+vmap <C-c> "+y
+vnoremap <BS> d
+vnoremap <C-C> "+y
+vnoremap <C-Insert> "+y
+imap <C-V>      "+gP
+map <S-Insert>      "+gP
+cmap <C-V>      <C-R>+
+cmap <S-Insert>     <C-R>+
+""""""""""""""""""""""""""""""""""""""""""""""
+" 行首行尾跳转
+nmap LL 0
+nmap LE $
+""""""""""""""""""""""""""""""""""""""""""""""
 "状态栏设置:
 "    - 正在编辑的文件名
 "    - 正在编辑的文件格式(DOS, Unix)
@@ -22,6 +75,13 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/nerdtree'
 map <F4> :NERDTreeMirror<CR>
 map <F4> :NERDTreeToggle<CR>
+""""""""""""""""""""""""""""""""""""""""""""""
+" 代码设置
+" 自适应不同语言的智能缩进
+filetype indent on
+filetype indent plugin on
+syntax on " 代码高亮
+set ts=4 " 设置tab键为四个空格
 """"""""""""""""""""""""""""""""""""""""""""""
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
@@ -50,7 +110,7 @@ Bundle 'EasyGrep'
 Bundle 'VOoM'
 Bundle 'VimIM'
 """""""""""""""""""""""""""""""""""""""""""""""
-" 语法高亮开关
+" 语法高亮开关: ';s'
 source ~/.vim/module/syntax.vim
 """""""""""""""""""""""""""""""""""""""""""""""
 source ~/.vim/module/hello.vim
