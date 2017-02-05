@@ -1,13 +1,26 @@
 """"""""""""""""""""""""""""""""""""""""""""""
+" 基本设置
+" 不兼容老的vi
+set nocompatible
+" 设置不备份文件 
+set nobackup
+" 设置不产生swap文件，用户宕机后恢复
+set noswapfile
+" 历史命令的数量
+set history=1024
+""""""""""""""""""""""""""""""""""""""""""""""
 " 配色
 set background=dark
-colorscheme solarized
-"colorscheme molokai
+"set transparency=11
+"colorscheme solarized
+colorscheme molokai
+"colorscheme github
+"colorscheme railscasts
 "colorscheme phd
 """"""""""""""""""""""""""""""""""""""""""""""
 " 语言和编码方式
 " Lang & Encoding {{{
-set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
+set fileencodings=ucs-bom,utf-8,gbk2312,gbk,gb18030,cp936
 set encoding=utf-8
 set langmenu=zh_CN
 let $LANG = 'en_US.UTF-8'
@@ -100,6 +113,17 @@ filetype indent on
 filetype indent plugin on
 syntax on " 代码高亮
 set ts=4 " 设置tab键为四个空格
+""""""""""""""""""""""""""""""""""""""""""""""
+" 文件搜索
+"Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'tacahiroy/ctrlp-funky'
+nnoremap <leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+let g:ctrlp_funky_syntax_highlight = 1
+
+let g:ctrlp_extensions = ['funky']
+
 """"""""""""""""""""""""""""""""""""""""""""""
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
