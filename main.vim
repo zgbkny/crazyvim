@@ -18,6 +18,26 @@ colorscheme molokai
 "colorscheme railscasts
 "colorscheme phd
 """"""""""""""""""""""""""""""""""""""""""""""
+" GUI
+source $VIMRUNTIME/delmenu.vim
+source $VIMRUNTIME/menu.vim
+" 窗口大小
+set lines=35 columns=140
+" 分割出来的窗口位于当前窗口下边/右边
+set splitbelow
+set splitright
+"不显示工具/菜单栏
+set guioptions-=T
+set guioptions-=m
+set guioptions-=L
+set guioptions-=r
+set guioptions-=b
+" 使用内置 tab 样式而不是 gui
+set guioptions-=e
+set nolist
+"set guifont=Inconsolata:h16:cANSI
+"set guifont=Courier_new:h14:b:cDEFAULT
+""""""""""""""""""""""""""""""""""""""""""""""
 " 语言和编码方式
 " Lang & Encoding {{{
 set fileencodings=ucs-bom,utf-8,gbk2312,gbk,gb18030,cp936
@@ -49,13 +69,43 @@ set cursorcolumn
 set hlsearch
 " 开启行号显示
 set number
+
+""""""""""""""""""""""""""""""""""""""""""""""
+" key map leader
+let mapleader=","
 """"""""""""""""""""""""""""""""""""""""""""""
 " 打印当前时间
 "map <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 
 " 复制当前文件/路径到剪贴板
-nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+nnoremap <leader>fn :let @*=substitute(expand("%"), "/", "/", "g")<CR>
+nnoremap <leader>fp :let @*=substitute(expand("%:p"), "/", "/", "g")<CR>
+""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""normal mode key map""""""""""""
+" reload .vimrc
+nnoremap <leader>sv :source $MYVIMRC<cr>
+" use space to select a word 
+nnoremap <space> viw 
+" move current line to next line
+nnoremap - ddp
+" move current line to prev line
+nnoremap _ ddkkp
+" use ctrl-u to U a word
+nnoremap <c-u> viwU
+
+""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""insert mode key map""""""""""""
+" use ctrl-u to U a word
+"imap <c-u> <esc>viwUi
+inoremap <c-u> <esc>viwUi
+" use ctrl-d to delete current line
+"imap <c-d> <esc>ddi
+inoremap <c-d> <esc>ddi
+" use ctrl-w to write file
+inoremap <c-w> <esc>:w!<cr>
+""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""visual mode key map""""""""""""
+" 
 """"""""""""""""""""""""""""""""""""""""""""""
 " 复制与粘贴快捷键
 imap <C-v> "+gP
@@ -69,7 +119,6 @@ cmap <C-V>      <C-R>+
 cmap <S-Insert>     <C-R>+
 """"""""""""""""""""""""""""""""""""""""""""""
 " tab设置
-let mapleader=","
 
 nmap <leader>s :source $VIM/_vimrc<cr>
 nmap <leader>e :e $VIM/.vimrc<cr>
@@ -115,7 +164,22 @@ syntax on " 代码高亮
 set ts=4 " 设置tab键为四个空格
 """"""""""""""""""""""""""""""""""""""""""""""
 " 文件搜索
-"Bundle 'ctrlpvim/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
+"nnoremap <leader>
+let g:ctrlp_map = '<leader>f'
+let g:ctrlp_cmd = 'CtrlP'
+noremap <leader>f :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\v[\/]\.(git|hg|svn|rvm)$',
+    \ 'file': '\v\.(exe|so|dll|zip|tar|tar.gz|pyc)$',
+    \ }
+let g:ctrlp_working_path_mode=0
+let g:ctrlp_match_window_bottom=1
+let g:ctrlp_max_height=150
+let g:ctrlp_match_window_reversed=0
+let g:ctrlp_mruf_max=500
+let g:ctrlp_follow_symlinks=1
+
 Bundle 'tacahiroy/ctrlp-funky'
 nnoremap <leader>fu :CtrlPFunky<Cr>
 " narrow the list down with a word under cursor
@@ -130,7 +194,6 @@ Plugin 'plasticboy/vim-markdown'
 Plugin 'suan/vim-instant-markdown'
 
 
-Bundle 'kien/ctrlp.vim'
 Bundle 'sukima/xmledit'
 Bundle 'sjl/gundo.vim'
 Bundle 'jiangmiao/auto-pairs'
@@ -151,6 +214,7 @@ Bundle 'SudoEdit.vim'
 Bundle 'EasyGrep'
 Bundle 'VOoM'
 Bundle 'VimIM'
+"""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""
 " 语法高亮开关: ';s'
 source ~/.vim/module/syntax.vim
