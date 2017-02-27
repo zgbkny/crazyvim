@@ -21,8 +21,8 @@ colorscheme molokai
 " GUI
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-" 窗口大小
-set lines=35 columns=140
+" 窗口大小“
+" set lines=35 columns=140
 " 分割出来的窗口位于当前窗口下边/右边
 set splitbelow
 set splitright
@@ -35,6 +35,9 @@ set guioptions-=b
 " 使用内置 tab 样式而不是 gui
 set guioptions-=e
 set nolist
+"set guifont=Courier\ New:h20
+set guifont=Monaco:h18
+set lines=50 columns=238
 "set guifont=Inconsolata:h16:cANSI
 "set guifont=Courier_new:h14:b:cDEFAULT
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -84,6 +87,9 @@ nnoremap <leader>fp :let @*=substitute(expand("%:p"), "/", "/", "g")<CR>
 """""""""""""""normal mode key map""""""""""""
 " reload .vimrc
 nnoremap <leader>sv :source $MYVIMRC<cr>
+" open workspace
+"nnoremap <leader>oh :e! ~/code/private/huijin-doc<cr>:cd ~/code/private/huijin-doc<cr>
+"nnoremap <leader>on :e! ~/code/private/note<cr>:cd ~/code/private/note<cr>
 " use space to select a word 
 nnoremap <space> viw 
 " move current line to next line
@@ -92,6 +98,24 @@ nnoremap - ddp
 nnoremap _ ddkkp
 " use ctrl-u to U a word
 nnoremap <c-u> viwU
+nnoremap <c-n> <esc>:bnext<cr>
+nnoremap <c-p> <esc>:bprev<cr>
+nnoremap <c-a> :ls<cr>
+nnoremap <c-o> :w!<cr>:e ~/
+nnoremap <leader>o :e! ~/
+nnoremap <c-s> <esc>:set number<cr>
+nnoremap <c-g> :
+nnoremap <c-6> <c-^>
+nnoremap <c-tab> <c-^>
+""""""""""""""""""""""""""""""""""""""""""""""
+" use us style, for better use
+nnoremap ： :
+
+" command map
+cnoremap 、 /
+cnoremap ！ !
+cnoremap ， ,
+cnoremap 。 .
 
 """"""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""insert mode key map""""""""""""
@@ -103,20 +127,29 @@ inoremap <c-u> <esc>viwUi
 inoremap <c-d> <esc>ddi
 " use ctrl-w to write file
 inoremap <c-w> <esc>:w!<cr>
+inoremap <c-o> <esc>:w!<cr>:e ~/
+inoremap <cr> <cr>
 """"""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""visual mode key map""""""""""""
 " 
 """"""""""""""""""""""""""""""""""""""""""""""
+vnoremap <c-o> <esc>:w!<cr>:e ~/
 " 复制与粘贴快捷键
+" 其中 "+ 代表系统粘贴板
+inoremap <D-v> <esc>"+p
+nnoremap <D-v> "+p
 imap <C-v> "+gP
+vmap <D-c> "+y
 vmap <C-c> "+y
 vnoremap <BS> d
+vnoremap <D-C> "+y
 vnoremap <C-C> "+y
 vnoremap <C-Insert> "+y
-imap <C-V>      "+gP
-map <S-Insert>      "+gP
-cmap <C-V>      <C-R>+
-cmap <S-Insert>     <C-R>+
+inoremap <D-V> <esc>"+p
+imap <C-V> "+gP
+map <S-Insert> "+gP
+cmap <C-V> <C-R>+
+cmap <S-Insert> <C-R>+
 """"""""""""""""""""""""""""""""""""""""""""""
 " tab设置
 
@@ -143,6 +176,7 @@ set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [ASCII=\%03.3b]\ [HEX=\%0
 """"""""""""""""""""""""""""""""""""""""""""""
 " 设置vundle
 set nocompatible                " be iMproved
+filetype plugin on
 filetype off                    " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -152,9 +186,9 @@ Bundle 'gmarik/vundle'
 " original repos on github
 """"""""""""""""""""""""""""""""""""""""""""""
 " 文件浏览器
-Bundle 'scrooloose/nerdtree'
-map <F4> :NERDTreeMirror<CR>
-map <F4> :NERDTreeToggle<CR>
+"Bundle 'scrooloose/nerdtree'
+"map <F4> :NERDTreeMirror<CR>
+"map <F4> :NERDTreeToggle<CR>
 """"""""""""""""""""""""""""""""""""""""""""""
 " 代码设置
 " 自适应不同语言的智能缩进
@@ -189,31 +223,31 @@ let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_extensions = ['funky']
 
 """"""""""""""""""""""""""""""""""""""""""""""
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'suan/vim-instant-markdown'
+"Plugin 'godlygeek/tabular'
+"Plugin 'plasticboy/vim-markdown'
+"Plugin 'suan/vim-instant-markdown'
 
 
-Bundle 'sukima/xmledit'
-Bundle 'sjl/gundo.vim'
-Bundle 'jiangmiao/auto-pairs'
-Bundle 'klen/python-mode'
-Bundle 'Valloric/ListToggle'
-Bundle 'SirVer/ultisnips'
+"Bundle 'sukima/xmledit'
+"Bundle 'sjl/gundo.vim'
+"Bundle 'jiangmiao/auto-pairs'
+"Bundle 'klen/python-mode'
+"Bundle 'Valloric/ListToggle'
+"Bundle 'SirVer/ultisnips'
 "Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/syntastic'
-Bundle 't9md/vim-quickhl'
+"Bundle 'scrooloose/syntastic'
+"Bundle 't9md/vim-quickhl'
 " Bundle 'Lokaltog/vim-powerline'
-Bundle 'scrooloose/nerdcommenter'
+"Bundle 'scrooloose/nerdcommenter'
 "..................................
 " vim-scripts repos
-Bundle 'YankRing.vim'
-Bundle 'vcscommand.vim'
-Bundle 'ShowPairs'
-Bundle 'SudoEdit.vim'
-Bundle 'EasyGrep'
-Bundle 'VOoM'
-Bundle 'VimIM'
+"Bundle 'YankRing.vim'
+"Bundle 'vcscommand.vim'
+"Bundle 'ShowPairs'
+"Bundle 'SudoEdit.vim'
+"Bundle 'EasyGrep'
+"Bundle 'VOoM'
+"Bundle 'VimIM'
 """""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""""""""""""""
 " 语法高亮开关: ';s'
